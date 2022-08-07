@@ -5,9 +5,9 @@ import api from '../../services/api'
 import  * as yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup'
 import Logo from "../../assets/Logo.svg"
+import { toast } from 'react-toastify';
 import {useNavigate} from "react-router-dom"
 import { Container } from '../../styled/global'
-import { toast } from 'react-toastify';
 
 const Register = () => {
 
