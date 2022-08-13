@@ -20,8 +20,8 @@ export const StyledDashboard = styled.main`
         justify-content: space-between;
         align-items: center;
         width:100%;
-        height: 73px;
-        border-bottom: 1px solid #212529;
+        height: 4.5625rem;
+        border-bottom: .0625rem solid #212529;
         padding: 0 6%;
     }
     
@@ -30,17 +30,18 @@ export const StyledDashboard = styled.main`
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        padding: 0px 16.2426px;
-        gap: 10.15px;
+        padding: 0rem 1.0152rem;
+        gap: .6344rem;
         background: #212529;
-        border-radius: 4px;
+        border-radius: .25rem;
         font-family: 'Inter';
         font-style: normal;
         font-weight: 600;
-        font-size: 12px;
-        line-height: 28px;
+        font-size: .75rem;
+        line-height: 1.75rem;
         text-align: center;
         color: #F8F9FA;
+        cursor: pointer
     }
 
     .container__user{
@@ -48,18 +49,51 @@ export const StyledDashboard = styled.main`
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
-        border-bottom: 1px solid #212529;
+        border-bottom: .0625rem solid #212529;
         width:100%;
-        height: 131px;
-        gap: 10px;
+        height: 8.1875rem;
+        gap: .625rem;
+    }
+
+    .container__tech{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 90%;
+        max-width: 780px;
+        margin-top: 19px;
+    }
+
+    .container__tech--tittle{
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 18px;
+        color: #F8F9FA;
+    }
+
+    .container__tech--button{
+        background: #212529;
+        border-radius: 4px;
+        width: 32px;
+        height: 32px;
+        color: #FFFFFF;
+    }
+
+    .container__tech-card{
+        display: flex;
+        width: 100%;
+        height: 49px;
+        
     }
     
     .container__tittle4{
         font-family: 'Inter';
         font-style: normal;
         font-weight: 700;
-        font-size: 18px;
-        line-height: 28px;
+        font-size: 1.125rem;
+        line-height: 1.75rem;
         color: #F8F9FA;
         margin: 0 6%;
     }
@@ -68,41 +102,61 @@ export const StyledDashboard = styled.main`
         font-family: 'Inter';
         font-style: normal;
         font-weight: 400;
-        font-size: 12px;
-        line-height: 22px;
+        font-size: .75rem;
+        line-height: 1.375rem;
         color: #868E96;
         margin: 0 6%;
     }
 
     main {
-        width: 100%;
-        display: none;
-        gap:25px;
+        width: 90%;
+        max-width: 780px;
+        height: 416px;
+        gap: 1.5625rem;
         flex-direction: column;
-        padding:0 6%;
+        padding: 5px 6%;
+        margin-top: 21px;
+        background: #212529;
+        border-radius: 4px;
     }
 
-    .container__text1{
+    .container__tech-card{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #121214;
+        border-radius: 4px;
+        margin-top: 16px;
+    }
+
+    .container__tech-card__text1{
         font-family: 'Inter';
         font-style: normal;
         font-weight: 700;
-        font-size: 18px;
-        line-height: 28px;
+        font-size: 14.2123px;
+        line-height: 24px;
+        margin-left: 12px;
         color: #F8F9FA;
-        margin: 37px 0;    
     }
 
-    .container__text2{
+    .container__tech-card__text2{
         font-family: 'Inter';
         font-style: normal;
         font-weight: 400;
-        font-size: 16px;
-        line-height: 24px;
-        color: #FFFFFF;
-        margin: 23px 0;
+        font-size: 12.182px;
+        line-height: 22px;
+        text-align: right;
+        color: #868E96;
     }
 
-    @media (min-width: 768px){
+    .container__tech-card__button {
+        border: none;
+        background: none;
+        color: rgba(255, 255, 255, 0.8);
+        margin-right: 18px;
+    }
+
+    @media (min-width: 48rem){
         .container__logo{
             padding:0 12%;
         }
@@ -128,7 +182,7 @@ export const StyledDashboard = styled.main`
         }
     }
 
-    @media (min-width: 1024px){
+    @media (min-width: 64rem){
         .container__logo{
             padding:0 18%;
         }

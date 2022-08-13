@@ -7,20 +7,20 @@ export const StyledLogin = styled.main`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
+    gap: .625rem;
+    margin-top: 1.25rem;
     form{
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 42px 22px;
-        gap: 22px;
+        padding: 2.625rem 1.375rem;
+        gap: 1.375rem;
         width: 90%;
-        max-width: 369px;
-        height: 403px;
+        max-width: 23.0625rem;
+        height: 25.1875rem;
         background: #212529;
-        box-shadow: 0px 3.20867px 32.0867px -8.02168px rgba(0, 0, 0, 0.25);
-        border-radius: 3.20867px;
+        box-shadow: 0rem .2005rem 2.0054rem -0.5014rem rgba(0, 0, 0, 0.25);
+        border-radius: .2005rem;
         margin: 0 auto;
     }
 
@@ -28,8 +28,8 @@ export const StyledLogin = styled.main`
         font-family: 'Inter';
         font-style: normal;
         font-weight: 700;
-        font-size: 14.439px;
-        line-height: 22px;
+        font-size: .9024rem;
+        line-height: 1.375rem;
         color: #F8F9FA;
     }
 
@@ -43,22 +43,22 @@ export const StyledLogin = styled.main`
         font-family: 'Inter';
         font-style: normal;
         font-weight: 400;
-        font-size: 9.772px;
-        line-height: 0px;
+        font-size: .6108rem;
+        line-height: 0rem;
         color: #F8F9FA;
     }
     input {
         display: flex;
         flex-direction: row;
         align-items: center;
-        padding: 0px 13.0293px;
-        gap: 8.14px;
+        padding: 0rem .8143rem;
+        gap: .5088rem;
         width: 100%;
-        margin-top: 17px;
-        height: 38.5px;
+        margin-top: 1.0625rem;
+        height: 2.4063rem;
         background: #343B41;
-        border: 0.9772px solid #F8F9FA;
-        border-radius: 3.20867px;
+        border: .0611rem solid #F8F9FA;
+        border-radius: .2005rem;
     }
 
     .btn-login{
@@ -66,26 +66,27 @@ export const StyledLogin = styled.main`
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        padding: 0px 22.3336px;
-        gap: 10.15px;
+        padding: 0rem 1.3959rem;
+        gap: .6344rem;
         background: #FF577F;
-        border: 1.2182px solid #FF577F;
-        border-radius: 4.06066px;
+        border: .0761rem solid #FF577F;
+        border-radius: .2538rem;
         width: 90%;
-        height: 38.5px;
+        height: 2.4063rem;
         font-family: 'Inter';
         font-style: normal;
         font-weight: 500;
-        font-size: 12.8347px;
-        line-height: 21px;
+        font-size: .8022rem;
+        line-height: 1.3125rem;
         color: #FFFFFF;
+        cursor: pointer;
     }
 
     .container__text{
         font-style: normal;
         font-weight: 600;
-        font-size: 9.62602px;
-        line-height: 14px;
+        font-size: .6016rem;
+        line-height: .875rem;
         color: #868E96;
     }
 
@@ -94,17 +95,18 @@ export const StyledLogin = styled.main`
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        padding: 0px 22.3336px;
-        gap: 10.15px;
+        padding: 0rem 1.3959rem;
+        gap: .6344rem;
         background: #868E96;
-        border: 1.2182px solid #868E96;
-        border-radius: 4px;
+        border: .0761rem solid #868E96;
+        border-radius: .25rem;
         font-style: normal;
         font-weight: 500;
-        font-size: 12.8347px;
-        line-height: 21px;
+        font-size: .8022rem;
+        line-height: 1.3125rem;
         color: #F8F9FA;
         width: 90%;
-        height: 38.5px;
+        height: 2.4063rem;
+        cursor: pointer;
     }
 `
