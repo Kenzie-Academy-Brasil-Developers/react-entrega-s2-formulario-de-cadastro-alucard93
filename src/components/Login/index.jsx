@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useContext} from "react";
 import api from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -8,9 +8,15 @@ import { StyledLogin } from "./style";
 import Logo from "../../assets/Logo.svg";
 import { Container } from "../../styled/global";
 import { toast } from "react-toastify";
+import { LoginContext } from "../../contexts/LoginContext/LoginContext";
+import { AddButtonContext } from "../../contexts/ModalContext/ModalContext";
 
 const Login = () => {
-  const navigation = useNavigate();
+
+    const navigation = useNavigate();
+
+    const { setUser, setUserId } = useContext(LoginContext)
+    const { setRegisterButton } = useContext(AddButtonContext)
 
   function addData(value) {
     api
@@ -18,8 +24,11 @@ const Login = () => {
       .then((res) => res)
       .then((res) => {
         if (res.data.user) {
-          localStorage.setItem("@TOKEN", res.data.token);
-          localStorage.setItem("@DATA", JSON.stringify(res.data.user));
+          localStorage.setItem("@token", res.data.token);
+          localStorage.setItem("@userData", JSON.stringify(res.data.user));
+          localStorage.setItem("@userId", res.data.user.id);
+          setUserId(res.data.user.id)
+          setUser(res.data.user)
           navigation("dashboard");
           toast.success("Login feito com sucesso!");
         } else {
@@ -33,6 +42,7 @@ const Login = () => {
   }
 
   function ChangePage() {
+    setRegisterButton(true)
     navigation("cadastro");
   }
 

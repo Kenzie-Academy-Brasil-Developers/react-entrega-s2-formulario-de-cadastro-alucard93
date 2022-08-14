@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledModal = styled.section`
+export const StyledModalEdit = styled.section`
         display: flex;
         flex-direction: column;
         width: 100%;
@@ -20,6 +20,7 @@ export const StyledModal = styled.section`
         background: #212529;
         margin-bottom: 30px;
     }
+
 
     .container__button{
         display: flex;
@@ -69,7 +70,6 @@ export const StyledModal = styled.section`
     
 
     label {
-        
         width: 90%;
         font-family: 'Inter';
         font-style: normal;
@@ -117,30 +117,56 @@ export const StyledModal = styled.section`
         border-radius: .25rem;
     }
 
+    .container__btns{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 90%;
+        margin: 0 auto;
+        margin-bottom: 32px;
+        margin-top: 20px;
+    }
+
     .btn-register{
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        padding: 0rem 1.3959rem;
-        gap: .6344rem;
-        width:  90%;
-        height: 3rem;
-        background: #FF577F;
-        border: .0761rem solid #FF577F;
-        border-radius: .2538rem;
-        margin: 0 auto; 
-        margin-top: 1.375rem;
-        margin-bottom: 2rem;
+        padding: 0px 22.3336px;
+        gap: 10.15px;
+        width: 100%;
+        max-width: 204px;
+        height: 48px;
+        background: #59323F;
+        border: 1.2182px solid #59323F;
+        border-radius: 4px;
         font-family: 'Inter';
         font-style: normal;
         font-weight: 500;
         font-size: 16px;
         line-height: 26px;
         color: #FFFFFF;
-
     }
     
+    .btn-del {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0px 22.3336px;
+        gap: 10.15px;
+        background: #868E96;
+        border: 1.2182px solid #868E96;
+        border-radius: 4px;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 26px;
+        color: #FFFFFF;
+        width: 100%;
+        max-width: 98px;
+    }
 
 
 

@@ -8,7 +8,8 @@ export const StyledLogin = styled.main`
     align-items: center;
     justify-content: center;
     gap: .625rem;
-    margin-top: 1.25rem;
+    margin-top: 5rem;
+
     form{
         display: flex;
         flex-direction: column;
@@ -59,6 +60,7 @@ export const StyledLogin = styled.main`
         background: #343B41;
         border: .0611rem solid #F8F9FA;
         border-radius: .2005rem;
+        color: #F8F9FA;
     }
 
     .btn-login{

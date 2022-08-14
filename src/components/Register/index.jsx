@@ -1,4 +1,4 @@
-import React from 'react'
+import {React, useContext} from 'react'
 import { useForm } from 'react-hook-form'
 import { StyledRegister } from './style'
 import api from '../../services/api'
@@ -8,6 +8,7 @@ import Logo from "../../assets/Logo.svg"
 import { toast } from 'react-toastify';
 import {useNavigate} from "react-router-dom"
 import { Container } from '../../styled/global'
+import { AddButtonContext } from '../../contexts/ModalContext/ModalContext';
 
 const Register = () => {
 
@@ -22,6 +23,8 @@ const Register = () => {
     });
 
     const navigate = useNavigate()
+    const { registerButton, setRegisterButton } = useContext(AddButtonContext)
+
     const submitFunction = (data) => {
         const cadastro = {
             email: data.email,
@@ -47,6 +50,7 @@ const Register = () => {
     });
 
     const login = () => {
+        setRegisterButton(false)
         navigate('/')
     }
 
