@@ -1,14 +1,27 @@
-import {React, useContext} from 'react'
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { useContext} from 'react'
 import { useForm } from 'react-hook-form'
 import { StyledRegister } from './style'
 import api from '../../services/api'
 import  * as yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup'
-import Logo from "../../assets/Logo.svg"
+// import Logo from "../../assets/Logo.svg"
 import { toast } from 'react-toastify';
 import {useNavigate} from "react-router-dom"
 import { Container } from '../../styled/global'
 import { AddButtonContext } from '../../contexts/ModalContext/ModalContext';
+import { AxiosError, AxiosResponse } from 'axios'
+
+
+interface IData {
+    name:            string
+    email:           string
+    password:        string | number
+    confirmPassword: string | number
+    bio:             string
+    contact:         string | number
+    course_module:   string
+}
 
 const Register = () => {
 
@@ -25,7 +38,7 @@ const Register = () => {
     const navigate = useNavigate()
     const { registerButton, setRegisterButton } = useContext(AddButtonContext)
 
-    const submitFunction = (data) => {
+    const submitFunction = (data: IData) => {
         const cadastro = {
             email: data.email,
             password: data.password,
@@ -35,17 +48,17 @@ const Register = () => {
             course_module: data.course_module
         }
         api.post('/users', cadastro)
-            .then(response => {
+            .then((response: AxiosResponse) => {
             toast.success('Cadastro feito com sucesso!')
             navigate(`/`)
         })
-        .catch(err => {
+        .catch((err: AxiosError) => {
             toast.error('Erro ao realizar o cadastro, verifique os dados!')
         })
     };
 
     const { register, handleSubmit, formState: { errors },
- } = useForm({
+ } = useForm<IData>({
         resolver: yupResolver(schema)
     });
 
@@ -60,7 +73,7 @@ const Register = () => {
         <StyledRegister>
             <header>
                 <div className='container__logo'>
-                    <img  className='container__img' src={Logo} alt="Logo" />
+                    {/* <img  className='container__img' src={Logo} alt="Logo" /> */}
                     <button onClick={() => login()} className='btn-back'>Voltar</button>
                 </div>
                 

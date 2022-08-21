@@ -1,4 +1,5 @@
-import {React, useContext } from 'react';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { useContext } from 'react';
 import { AddButtonContext } from '../../contexts/ModalContext/ModalContext';
 import * as yup from 'yup';
 import { useForm } from "react-hook-form";
@@ -6,6 +7,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { StyledModalEdit } from "./style";
 import { toast } from 'react-toastify';
 import api from '../../services/api'
+import { AxiosError, AxiosResponse } from 'axios'
+
+interface IData {
+  status: string
+}
 
 const ModalEdit = () => {
   const {editButton, setEditButton, id, placeholder} = useContext(AddButtonContext)
@@ -19,15 +25,20 @@ const ModalEdit = () => {
     title: yup.string().required("Insira uma Tecnologia")
     });
 
-  const { register, handleSubmit, formState: {errors}, } = useForm({
+  const { register, handleSubmit, formState: {errors}, } = useForm<IData>({
       resolver: yupResolver(schema),
     });
 
-    const submitEdit = (data) => {
-        console.log(data)
-        api.defaults.headers.authorization = `Bearer ${token}`
-        api.put(`/users/techs/${id}` , data)
-        .then(response => {
+    const submitEdit = (data: IData) => {
+      const headers = {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+      }
+
+        // api.defaults.headers.authorization = `Bearer ${token}`
+        api.put(`/users/techs/${id}` , data, headers)
+        .then((response: AxiosResponse) => {
         toast.success('Tecnologia Editada')
         enableEditing()
         })
@@ -37,13 +48,18 @@ const ModalEdit = () => {
     };
 
     const deleteTech = () => {
-        api.defaults.headers.authorization = `Bearer ${token}`
-        api.delete(`/users/techs/${id}`)
-        .then(response => {
+      const headers = {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+      }
+        // api.defaults.headers.authorization = `Bearer ${token}`
+        api.delete(`/users/techs/${id}`, headers)
+        .then((response: AxiosResponse) => {
         toast.success('Tecnologia Excluída')
         enableEditing()
         })
-        .catch(err => {
+        .catch((err:AxiosError) => {
         // toast.error(`${err.message}`) 
         console.log(err)})
     };
@@ -77,7 +93,7 @@ const ModalEdit = () => {
         </div>
         <div className='container__btns'>
           <button className='btn-register' type="submit">Salvar alterações</button>
-          <button className='btn-del' type="onclick" onClick={() => deleteTech()}>Excluir</button>
+          <button className='btn-del' onClick={() => deleteTech()}>Excluir</button>
         </div>
         </form>
       </aside>

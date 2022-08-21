@@ -1,15 +1,22 @@
-import {React, useContext} from "react";
+import React, { useContext} from "react";
 import api from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { StyledLogin } from "./style";
-import Logo from "../../assets/Logo.svg";
+// import Logo from  "../../assets/Logo.svg";
 import { Container } from "../../styled/global";
 import { toast } from "react-toastify";
 import { LoginContext } from "../../contexts/LoginContext/LoginContext";
 import { AddButtonContext } from "../../contexts/ModalContext/ModalContext";
+import { AxiosError, AxiosResponse } from 'axios'
+
+interface IData {
+  email:    string
+  password: string
+}
+
 
 const Login = () => {
 
@@ -18,10 +25,10 @@ const Login = () => {
     const { setUser, setUserId } = useContext(LoginContext)
     const { setRegisterButton } = useContext(AddButtonContext)
 
-  function addData(value) {
+  function addData(value: IData) {
     api
       .post("/sessions", value)
-      .then((res) => res)
+      .then((res:AxiosResponse) => res)
       .then((res) => {
         if (res.data.user) {
           localStorage.setItem("@token", res.data.token);
@@ -36,12 +43,12 @@ const Login = () => {
         }
       })
 
-      .catch((res) => {
+      .catch((res:AxiosError) => {
         toast.error("Email ou Senha incorretos");
       });
   }
 
-  function ChangePage() {
+  function ChangePage():void {
     setRegisterButton(true)
     navigation("cadastro");
   }
@@ -61,7 +68,7 @@ const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IData>({
     resolver: yupResolver(validationUser),
   });
 
@@ -69,7 +76,7 @@ const Login = () => {
     <>
       <Container>
         <StyledLogin>
-          <img src={Logo} alt="Logo" />
+          {/* <img src={Logo} alt="Logo" /> */}
           <form onSubmit={handleSubmit(addData)}>
             <h2>Login</h2>
 

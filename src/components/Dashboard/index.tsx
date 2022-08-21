@@ -1,6 +1,7 @@
-import { StyledDashboard } from '../Dashboard/style';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { StyledDashboard } from './style';
 import { Container } from '../../styled/global'
-import Logo from '../../assets/Logo.svg'
+// import Logo from '../../assets/Logo.svg'
 import {useNavigate, Navigate} from "react-router-dom"
 import { toast } from 'react-toastify';
 import { RiDeleteBin6Line } from 'react-icons/ri'
@@ -10,37 +11,48 @@ import { LoginContext } from '../../contexts/LoginContext/LoginContext'
 import { AddButtonContext } from '../../contexts/ModalContext/ModalContext'
 import api from '../../services/api';
 import ModalEdit from '../ModalEdit/ModalEdit';
+import { AxiosError, AxiosResponse } from 'axios'
 
+
+interface ITech {
+    created_at: Date
+    id: string
+    status: string
+    title: string
+    updated_at: Date
+}
 
 const Dashboard = () => {
     
-    const dataUser = JSON.parse(localStorage.getItem("@userData"));
+    const dataUser = JSON.parse(localStorage.getItem("@userData") || '{}' );
     const navigate = useNavigate()
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { user , setUser, setLoading, loading } = useContext(LoginContext)
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { addButton, setAddButton, editButton, setEditButton, id, setId, setPlaceholder } = useContext(AddButtonContext)
-    const [techs, setTechs] = useState([])
+    const [techs, setTechs] = useState<ITech[]>([])
 
     useEffect(() => {
 
     const idUser = localStorage.getItem("@userId")       
 
     function load () {
-        api.get(`/users/${idUser}`).then(res => {
+        api.get(`/users/${idUser}`).then((res: AxiosResponse) => {
             setTechs(res.data.techs)
             setUser(res.data)
             setLoading(false)
-        }).catch(err => {console.log(err)})
+        }).catch((err: AxiosError) => {console.log(err)})
         }
         return load()    
     }, [setLoading, setUser, techs])
     
-    const loadingPage = () => {
+    const loadingPage = ():void => {
         setLoading(false)
     }
 
-    const logout = () => {
+    const logout = ():void => {
         localStorage.clear()
-        setUser(null)
+        setUser(undefined)
         toast.success('Logout feito com sucesso!')
     }
 
@@ -49,20 +61,12 @@ const Dashboard = () => {
         setAddButton(true)
     }
 
-    function activateEditor (id, placeholder) {
+    function activateEditor (id:string, placeholder: string) {
         setEditButton(true)
         setId(id)
         setPlaceholder(placeholder)
     }
 
-    if(loading) return (
-    <div>Carregando...</div>,
-        !user &&
-        setTimeout(() => {
-            setLoading(false)
-        }, 2000)
-        
-    )
 
     if(user) {
 
@@ -74,7 +78,7 @@ const Dashboard = () => {
             <header>
                 <section className='container__border'>
                     <div className='container__logo'>
-                        <img className='container__img' src={Logo} alt="Logo" ></img>
+                        {/* <img className='container__img' src={Logo} alt="Logo" ></img> */}
                         <button className='btn-logout' onClick={() => logout()}>Sair</button>
                     </div>
                 </section>

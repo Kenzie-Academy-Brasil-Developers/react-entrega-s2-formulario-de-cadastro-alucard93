@@ -1,4 +1,4 @@
-import {React, useContext } from 'react';
+import React, { useContext } from 'react';
 import { AddButtonContext } from '../../contexts/ModalContext/ModalContext';
 import * as yup from 'yup';
 import { useForm } from "react-hook-form";
@@ -6,6 +6,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { StyledModal } from "./style";
 import { toast } from 'react-toastify';
 import api from '../../services/api'
+import { AxiosError, AxiosResponse } from 'axios'
+
+interface IData {
+  title:  string
+  status: string
+}
 
 const Modal = () => {
   const {setAddButton} = useContext(AddButtonContext)
@@ -15,19 +21,24 @@ const Modal = () => {
     title: yup.string().required("Insira uma Tecnologia")
     });
 
-  const { register, handleSubmit, formState: {errors}, } = useForm({
+  const { register, handleSubmit, formState: {errors}, } = useForm<IData>({
       resolver: yupResolver(schema),
     });
 
-const submitFunction = (data) => {
-    api.defaults.headers.authorization = `Bearer ${token}`
-    api.post('/users/techs' , data)
-    .then(response => {
+const submitFunction = (data: IData) => {
+    const headers = {
+      headers: {
+          'Authorization': `Bearer ${token}`
+      }
+    }
+    // api.defaults.headers.authorization = `Bearer ${token}`
+    api.post('/users/techs' , data, headers)
+    .then((response: AxiosResponse) => {
     toast.success('Tecnologia cadastrada')
     console.log(response)
     activateRegistration()
     })
-    .catch(err => {
+    .catch((err: AxiosError) => {
     toast.error(`${err.message}`) 
     console.log(err)})
     
